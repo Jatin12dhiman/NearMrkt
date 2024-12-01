@@ -143,27 +143,28 @@ const Checkout = ({setOrder}) => {
                                 <label className='block text-gray-700 ml-2' htmlFor="">Debit Card</label>
                             </div>
                             {paymentMethod === "dc" && (
-                                <div>
-                                    <h3>Debit Card Information</h3>
-                                    <div>
-                                        <label htmlFor='' >Card Number</label>
-                                        <input type='text' placeholder='Enter Card Number' />
-                                    </div>
-                                    <div>
-                                        <label htmlFor='' >Card Holder Name</label>
-                                        <input type='text' />
-                                    </div>
-                                    <div>
-                                        <div>
-                                            <label htmlFor='' >Expire Date</label>
-                                            <input type='text' />
-                                        </div>
-                                        <div>
-                                            <label htmlFor='' >CVV</label>
-                                            <input type='text' />
-                                        </div>
-                                    </div>
-                                </div>
+                                <div className="p-4">
+    <h3 className="text-xl font-semibold mb-4">Debit Card Information</h3>
+    <div className="mb-4">
+        <label htmlFor="" className="block text-sm font-medium text-gray-700">Card Number</label>
+        <input type="text" placeholder="Enter Card Number" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+    </div>
+    <div className="mb-4">
+        <label htmlFor="" className="block text-sm font-medium text-gray-700">Card Holder Name</label>
+        <input type="text" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+    </div>
+    <div className="grid grid-cols-2 gap-4">
+        <div className="mb-4">
+            <label htmlFor="" className="block text-sm font-medium text-gray-700">Expire Date</label>
+            <input type="text" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+        </div>
+        <div className="mb-4">
+            <label htmlFor="" className="block text-sm font-medium text-gray-700">CVV</label>
+            <input type="text" className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+        </div>
+    </div>
+</div>
+
                             )}
                         </div>
                         {paymentMethod}
