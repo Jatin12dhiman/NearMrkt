@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const Checkout = ({setOrder}) => {
     const [billingToggle, setBillingToggle] = useState(true)

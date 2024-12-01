@@ -1,10 +1,36 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import {FaSearch, FaShoppingCart, FaUser} from 'react-icons/fa'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import Modal from './Modal'
+import Login from './Login'
+import Register from './Register'
+import { setSearchTerm } from '../redux/productSlice'
 
 
 const Navbar = () => {
+    const [isModelOpen, setIsModelOpen] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
+    const [search ,setSearch]  = useState()
+    const dispatch =useDispatch()
+    const navigate = useNavigate()
+
+    const handelSearch =(e) =>{
+        e.preventDefault()
+        dispatch(setSearchTerm(search))
+        navigate('/filter-data')
+    }
+
+    const openSignUp = () =>{
+        setIsLogin(false)
+        setIsModelOpen(true)
+    } 
+
+    const openLogin = () =>{
+        setIsLogin(true)
+        setIsModelOpen(true)
+    } 
+
     const products = useSelector(state => state.cart.products)
   return (
     <nav className='bg-white shadow-md'>
@@ -13,8 +39,8 @@ const Navbar = () => {
                 <Link to="/">NearMrkt</Link>
             </div>
             <div className='relative flex-1 mx-4'>
-                <form >
-                    <input className='w-full border py-2 px-4' type="text" placeholder='Seacrh Product' />
+                <form onSubmit={handelSearch}>
+                    <input className='w-full border py-2 px-4' onChange={(e)=>setSearch(e.target.value)} type="text" placeholder='Seacrh Product' />
                     <FaSearch className='absolute top-3 right-3 text-red-500'></FaSearch>
                 </form>
             </div>
@@ -23,7 +49,7 @@ const Navbar = () => {
                     <FaShoppingCart  className='text-lg'/>
                     {products.length >0 && (<span className='absolute top-0 text-sm w-3 left-3 bg-red-600 rounded-full flex justify-center items-center text-white'>{products.length}</span>)}
                 </Link>
-                <button className='hidden md:block'> 
+                <button className='hidden md:block' onClick={()=>setIsModelOpen(true)} > 
                 {/* md:clock means midium devices it will be displaye for Smaller it will be hidden */}
                      Login | Register
                 </button>
@@ -46,6 +72,9 @@ const Navbar = () => {
                 About
             </Link>
         </div>
+        <Modal isModelOpen={isModelOpen} setIsModelOpen={setIsModelOpen}>
+            {isLogin ? <Login openSignUp={openSignUp}/>: <Register openLogin={openLogin} />}
+        </Modal>
     </nav>
   )
 }
