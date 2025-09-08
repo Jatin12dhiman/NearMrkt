@@ -37,7 +37,7 @@ const Navbar = () => {
       {/* --- Top Section --- */}
       <div className="container mx-auto px-4 md:px-16 lg:px-24 py-4 flex justify-between items-center">
         <div className="text-lg font-bold">
-          <Link to="/">NearMrkt</Link>
+          <Link to="/">Apni Dukan</Link>
         </div>
 
         {/* --- Search --- */}
